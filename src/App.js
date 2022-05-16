@@ -87,6 +87,7 @@ export default function App() {
          .firstElementChild.getBoundingClientRect();
       Scroll.animateScroll.scrollMore(cardHeight * 2);
    };
+
    const openModal = (url, alt) => {
       setShowModal(true);
       setOpenModalItem({ url, alt });
