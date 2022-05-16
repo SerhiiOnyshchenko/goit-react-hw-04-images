@@ -7,20 +7,20 @@ export default function Modal({ onClose, url, alt }) {
    const modalRoot = useRef(document.querySelector('#modal-root'));
 
    useEffect(() => {
+      const handelKeyUp = e => {
+         if (e.code === 'Escape') {
+            addCloseClass();
+            setTimeout(() => {
+               onClose();
+            }, 1000);
+         }
+      };
       window.addEventListener('keydown', handelKeyUp);
       return () => {
          window.removeEventListener('keydown', handelKeyUp);
       };
-   }, []);
+   }, [onClose]);
 
-   const handelKeyUp = e => {
-      if (e.code === 'Escape') {
-         addCloseClass();
-         setTimeout(() => {
-            onClose();
-         }, 1000);
-      }
-   };
    const handleBackdropClick = e => {
       if (e.target === e.currentTarget) {
          addCloseClass();

@@ -35,7 +35,7 @@ export default function App() {
                   )
                );
             });
-            setImagesList([...imagesList, ...filterDataHits]);
+            setImagesList(prev => [...prev, ...filterDataHits]);
             setLoading(false);
             if (date.total !== date.hits.length) {
                setShowLoadMore(true);
@@ -45,7 +45,7 @@ export default function App() {
                   `Hooray! We found ${date.totalHits} images.`
                );
             }
-            if (date.total <= imagesList.length + perPage) {
+            if (date.total <= countPage * perPage) {
                setShowLoadMore(false);
                Notiflix.Notify.info(
                   "We're sorry, but you've reached the end of search results."
@@ -53,7 +53,7 @@ export default function App() {
             }
          })
          .catch(onApiError);
-   }, [countPage, searchName]);
+   }, [countPage, searchName, perPage]);
 
    const onApiError = () => {
       Notiflix.Notify.failure(
