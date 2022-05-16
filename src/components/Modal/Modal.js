@@ -1,58 +1,56 @@
-import React, { Component } from 'react';
+import { useEffect, useRef } from 'react';
 import { createPortal } from 'react-dom';
 import s from './Modal.module.css';
 import PropTypes from 'prop-types';
 
-const modalRoot = document.querySelector('#modal-root');
+export default function Modal({ onClose, url, alt }) {
+   const modalRoot = useRef(document.querySelector('#modal-root'));
 
-class Modal extends Component {
-   componentDidMount() {
-      window.addEventListener('keydown', this.handelKeyUp);
-   }
-   componentWillUnmount() {
-      window.removeEventListener('keydown', this.handelKeyUp);
-   }
-   handelKeyUp = e => {
+   useEffect(() => {
+      window.addEventListener('keydown', handelKeyUp);
+      return () => {
+         window.removeEventListener('keydown', handelKeyUp);
+      };
+   }, []);
+
+   const handelKeyUp = e => {
       if (e.code === 'Escape') {
-         this.addCloseClass();
+         addCloseClass();
          setTimeout(() => {
-            this.props.onClose();
+            onClose();
          }, 1000);
       }
    };
-   handleBackdropClick = e => {
+   const handleBackdropClick = e => {
       if (e.target === e.currentTarget) {
-         this.addCloseClass();
+         addCloseClass();
          setTimeout(() => {
-            this.props.onClose();
+            onClose();
          }, 1000);
       }
    };
-   addCloseClass = () => {
+   const addCloseClass = () => {
       const Overlay = document.querySelector('#CloseAnimateOverlay');
       const Modal = document.querySelector('#CloseAnimateModal');
       Overlay.classList.add(`${s.CloseAnimate}`);
       Modal.classList.add(`${s.CloseAnimate}`);
    };
-   render() {
-      const { url, alt } = this.props;
-      return createPortal(
-         <div
-            id="CloseAnimateOverlay"
-            className={s.Overlay}
-            onClick={this.handleBackdropClick}
-         >
-            <div id="CloseAnimateModal" className={s.Modal}>
-               <img src={url} alt={alt} />
-            </div>
-         </div>,
-         modalRoot
-      );
-   }
+   return createPortal(
+      <div
+         id="CloseAnimateOverlay"
+         className={s.Overlay}
+         onClick={handleBackdropClick}
+      >
+         <div id="CloseAnimateModal" className={s.Modal}>
+            <img src={url} alt={alt} />
+         </div>
+      </div>,
+      modalRoot.current
+   );
 }
+
 Modal.propTypes = {
    url: PropTypes.string.isRequired,
    alt: PropTypes.string.isRequired,
    onClose: PropTypes.func.isRequired,
 };
-export default Modal;
