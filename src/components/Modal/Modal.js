@@ -33,7 +33,7 @@ export default function Modal({ onClose, url, alt }) {
       const Overlay = document.querySelector('#CloseAnimateOverlay');
       const Modal = document.querySelector('#CloseAnimateModal');
       Overlay.classList.add(`${s.CloseAnimate}`);
-      Modal.classList.add(`${s.CloseAnimate}`);
+      Modal.classList.add(`${s.CloseAnimateModal}`);
    };
    return createPortal(
       <div

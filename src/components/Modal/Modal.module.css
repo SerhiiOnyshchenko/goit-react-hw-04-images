@@ -18,10 +18,10 @@
 	animation: animateModal 1s linear;
 }
 .Overlay.CloseAnimate {
-	animation: animateOverlayClose 1s linear;
+	animation: animateOverlayClose 1.5s linear;
 }
-.Modal.CloseAnimate {
-	animation: animateModalClose 1s linear;
+.Modal.CloseAnimateModal {
+	animation: animateModalClose 1.5s linear;
 }
 
 @keyframes animateOverlay {

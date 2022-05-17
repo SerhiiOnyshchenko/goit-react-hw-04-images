@@ -89,8 +89,10 @@ export default function App() {
    };
 
    const openModal = (url, alt) => {
-      setShowModal(true);
       setOpenModalItem({ url, alt });
+      setTimeout(() => {
+         setShowModal(true);
+      }, 100);
    };
 
    return (

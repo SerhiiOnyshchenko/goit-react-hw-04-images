@@ -1,0 +1,24 @@
+.PerBtnBox {
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+}
+.PerBtn {
+	border-radius: 5px;
+	border: 1px solid black;
+	width: 20;
+	height: 20px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-right: 10px;
+	background: grey;
+}
+.PerBtn:hover {
+	box-shadow: 0 0 2px 2px gray;
+	cursor: pointer;
+}
+.ActiveBtn {
+	background: rgb(99, 99, 99);
+	font-weight: 700;
+}
