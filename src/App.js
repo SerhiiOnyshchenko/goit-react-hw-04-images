@@ -18,7 +18,9 @@ export default function App() {
    const [showLoadMore, setShowLoadMore] = useState(false);
    const [loading, setLoading] = useState(false);
    const [openModalItem, setOpenModalItem] = useState({ url: '', alt: '' });
-
+   Notiflix.Notify.init({
+      position: 'left-top',
+   });
    useEffect(() => {
       if (!searchName) {
          return;
@@ -69,7 +71,7 @@ export default function App() {
          Notiflix.Notify.failure('Please. Enter the name of the picture.');
          setShowLoadMore(false);
       }
-      if (searchName === name && countPage === 1) {
+      if (searchName === name && countPage === 1 && per === perPage) {
          return;
       }
       setSearchName(name);
