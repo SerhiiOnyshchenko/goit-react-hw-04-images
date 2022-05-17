@@ -5,20 +5,21 @@
 }
 .PerBtn {
 	border-radius: 5px;
-	border: 1px solid black;
-	width: 20;
-	height: 20px;
+	width: 25px;
+	height: 25px;
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	margin-right: 10px;
-	background: grey;
-}
-.PerBtn:hover {
-	box-shadow: 0 0 2px 2px gray;
+	box-shadow: inset 0 0 2px 2px #1e34add0;
+	background-color: inherit;
 	cursor: pointer;
 }
+.PerBtn:hover {
+	box-shadow: 0 0 2px 2px #1e34ad;
+}
 .ActiveBtn {
-	background: rgb(99, 99, 99);
+	background-color: #1e34ad;
+	box-shadow: 0 0 2px 2px #1e34ad;
 	font-weight: 700;
 }

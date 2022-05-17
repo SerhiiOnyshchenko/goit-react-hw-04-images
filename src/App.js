@@ -7,11 +7,12 @@ import Button from 'components/Button/Button';
 import Modal from 'components/Modal/Modal';
 import Loader from 'components/Loader/Loader';
 import * as Scroll from 'react-scroll';
+import Scrollup from 'components/Scrollup/Scrollup';
 
 export default function App() {
    const [searchName, setSearchName] = useState('');
    const [countPage, setCountPage] = useState(1);
-   const [perPage] = useState(12);
+   const [perPage, setPerPage] = useState(12);
    const [imagesList, setImagesList] = useState([]);
    const [showModal, setShowModal] = useState(false);
    const [showLoadMore, setShowLoadMore] = useState(false);
@@ -63,7 +64,7 @@ export default function App() {
       setLoading(false);
    };
 
-   const onSubmit = name => {
+   const onSubmit = (name, per) => {
       if (!name) {
          Notiflix.Notify.failure('Please. Enter the name of the picture.');
          setShowLoadMore(false);
@@ -72,6 +73,7 @@ export default function App() {
          return;
       }
       setSearchName(name);
+      setPerPage(per);
       setCountPage(1);
       setImagesList([]);
    };
@@ -108,6 +110,7 @@ export default function App() {
          <ImageGallery params={imagesList} openModal={openModal} />
          {loading && <Loader />}
          {showLoadMore && <Button onClick={onloadeMore} title="Load more" />}
+         <Scrollup />
       </div>
    );
 }

@@ -1,5 +1,6 @@
 import React from 'react';
 import './PerPage.css';
+import PropTypes from 'prop-types';
 
 export default function PerPage({ onChange }) {
    const toggleClass = e => {
@@ -27,3 +28,4 @@ export default function PerPage({ onChange }) {
       </div>
    );
 }
+PerPage.propTypes = { onChange: PropTypes.func.isRequired };

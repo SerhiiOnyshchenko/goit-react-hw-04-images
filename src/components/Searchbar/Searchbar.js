@@ -1,13 +1,15 @@
 import { useState } from 'react';
 import PropTypes from 'prop-types';
 import s from './Searchbar.module.css';
+import PerPage from 'components/PerPage/PerPage';
 
 export default function Searchbar({ onSubmit }) {
    const [value, setValue] = useState('');
+   const [perPage, setPerPage] = useState(12);
 
    const onFormSubmit = e => {
       e.preventDefault();
-      onSubmit(value);
+      onSubmit(value, perPage);
    };
 
    return (
@@ -25,6 +27,7 @@ export default function Searchbar({ onSubmit }) {
                placeholder="Search images and photos"
             />
          </form>
+         <PerPage onChange={setPerPage} />
       </header>
    );
 }
